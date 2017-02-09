@@ -25,6 +25,7 @@ namespace EndMe_Later
             {
                 int sleepValue = (int)(sleepSlider.Value * 3600);
                 st.makeSleepTimer(sleepValue);
+                statusText.Text = "set";
             }
         }
 
@@ -32,6 +33,7 @@ namespace EndMe_Later
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             st.stopSleepTimer();
+            statusText.Text = "stop";
         }
     }
 }

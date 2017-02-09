@@ -20,7 +20,7 @@
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="2" ScaleY="2" />
             </CheckBox.LayoutTransform>
-        </CheckBox> 
+        </CheckBox>
         <TextBlock x:Name="sleepTimerTextBlock" HorizontalAlignment="Left" FontSize="24" Height="31" Margin="67,40,0,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="Sleep Timer:" VerticalAlignment="Top" Width="136"/>
         <Slider x:Name="sleepSlider" IsSnapToTickEnabled="True" TickFrequency="0.5"  Maximum="5" Margin="223,48,144,245" />
         <TextBlock x:Name="hoursText" FontSize="26" Height="31" Margin="559,43,18,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="hours" VerticalAlignment="Top" Width="76"/>
@@ -35,7 +35,8 @@
         <Slider x:Name="dndSlider" IsSnapToTickEnabled="True" TickFrequency="0.5"  Maximum="5" Margin="223,96,144,197" />
         <TextBlock x:Name="dndText" FontSize="26" Height="31" Margin="559,91,18,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="hours" VerticalAlignment="Top" Width="76"/>
         <TextBlock x:Name="dndInfoTextBlock" TextAlignment="Center" HorizontalAlignment="Center" FontSize="26" Height="31" Margin="514,88,86,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding ElementName=dndSlider, Path=Value}" VerticalAlignment="Top" Width="53"/>
-        
+
+        <TextBlock x:Name="statusText" TextAlignment="Center" HorizontalAlignment="Center" FontSize="26" Height="31" Margin="23,256,558.667,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="73"/>
         <Button x:Name="startButton" Content="Start" Height="48" Margin="101,247,284,0" VerticalAlignment="Top" Background="LightGreen" Click="button_Click"/>
         <Button x:Name="undoButton" Content="Undo" HorizontalAlignment="Left" Margin="435,247,0,0" Width="132" Background="IndianRed" Click="button1_Click" Height="48" VerticalAlignment="Top"/>
     </Grid>
