@@ -19,6 +19,7 @@ namespace EndMe_Later
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new SleepTimer();
         }
 
         // calculate sleep time in seconds and send to sdtimer

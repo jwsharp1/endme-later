@@ -10,9 +10,30 @@ namespace EndMe_Later
     public class SleepTimer : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        int sleepTime = 0;
-
+        //int sleepTime = 0;
+        public int _sleepTime;
         DispatcherTimer sleepTimer, dndTimer;
+
+        private void OnPropertyChanged(String property)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
+            }
+        }
+
+        public int sleepTime
+        {
+            get
+            {
+                return _sleepTime;
+            }
+            set
+            {
+                _sleepTime = value;
+                OnPropertyChanged("SleepTime");
+            }
+        }
 
         private void sleep()
         {

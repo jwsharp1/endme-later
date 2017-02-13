@@ -40,12 +40,12 @@
             </Grid>
         </materialDesign:Card>
 
-        
-        <materialDesign:Card Padding="2" Margin="4,115,233.667,0" Height="188" >
-            <TextBlock x:Name="sleepTime" TextAlignment="Left" HorizontalAlignment="Left" FontSize="18" Height="31" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Width="73" Margin="10,26,0,0"/>
+
+        <materialDesign:Card Padding="2" Margin="4,115,211,0" Height="188" >
+            <TextBlock x:Name="sleepTime" TextAlignment="Left" HorizontalAlignment="Left" FontSize="18" Height="31" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding Path=sleepTime}" VerticalAlignment="Top" Width="93" Margin="10,26,0,0"/>
         </materialDesign:Card>
 
-        <Button x:Name="startButton" Content="Start" FontSize="36" Height="73" Margin="205,230,179.667,0" VerticalAlignment="Top" Background="LightGreen" Click="button_Click"/>
-        <Button x:Name="undoButton" Content="Stop" FontSize="36" Margin="491,230,44.667,0" Background="IndianRed" Click="button1_Click" Height="73" VerticalAlignment="Top"/>
+        <Button x:Name="startButton" Content="Start" FontSize="36" Height="73" Margin="246,230,139,0" VerticalAlignment="Top" Background="LightGreen" Click="button_Click"/>
+        <Button x:Name="undoButton" Content="Stop" FontSize="36" Margin="526,230,10,0" Background="IndianRed" Click="button1_Click" Height="73" VerticalAlignment="Top"/>
     </Grid>
 </Window>
