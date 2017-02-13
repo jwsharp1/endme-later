@@ -16,28 +16,36 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <CheckBox x:Name="sleepCheckBox" Margin="27,31,582,244">
-            <CheckBox.LayoutTransform>
-                <ScaleTransform ScaleX="2" ScaleY="2" />
-            </CheckBox.LayoutTransform>
-        </CheckBox>
-        <TextBlock x:Name="sleepTimerTextBlock" HorizontalAlignment="Left" FontSize="24" Height="31" Margin="67,40,0,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="Sleep Timer:" VerticalAlignment="Top" Width="136"/>
-        <Slider x:Name="sleepSlider" IsSnapToTickEnabled="True" TickFrequency="0.5"  Maximum="5" Margin="223,48,144,245" />
-        <TextBlock x:Name="hoursText" FontSize="26" Height="31" Margin="559,43,18,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="hours" VerticalAlignment="Top" Width="76"/>
-        <TextBlock x:Name="sleepInfoTextBlock" TextAlignment="Center" HorizontalAlignment="Center" FontSize="26" Height="31" Margin="514,43,86,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding ElementName=sleepSlider, Path=Value}" VerticalAlignment="Top" Width="53"/>
+        <materialDesign:Card Padding="4" Margin="4,4,3.667,0" Height="216" >
+            <Grid>
+                <CheckBox x:Name="sleepCheckBox" Margin="22,25,452.667,123">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+                <TextBlock x:Name="sleepTimerTextBlock" HorizontalAlignment="Left" FontSize="24" Height="31" Margin="67,40,0,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="Sleep Timer:" VerticalAlignment="Top" Width="136"/>
+                <Slider x:Name="sleepSlider" IsSnapToTickEnabled="True" TickFrequency="0.5"  Maximum="5" Margin="214,43,132.667,125" />
+                <TextBlock x:Name="hoursText" FontSize="26" Height="31" Margin="544,38,10.667,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="hours" VerticalAlignment="Top" Width="76"/>
+                <TextBlock x:Name="sleepInfoTextBlock" TextAlignment="Center" HorizontalAlignment="Center" FontSize="26" Height="31" Margin="498,38,79.667,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding ElementName=sleepSlider, Path=Value}" VerticalAlignment="Top" Width="53"/>
 
-        <CheckBox x:Name="dndCheckBox" Margin="27,83,575,184">
-            <CheckBox.LayoutTransform>
-                <ScaleTransform ScaleX="2" ScaleY="2" />
-            </CheckBox.LayoutTransform>
-        </CheckBox>
-        <TextBlock x:Name="dndTimerTextBlock" HorizontalAlignment="Left" FontSize="24" Height="31" Margin="67,91,0,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="Quiet Hours:" VerticalAlignment="Top" Width="151"/>
-        <Slider x:Name="dndSlider" IsSnapToTickEnabled="True" TickFrequency="0.5"  Maximum="5" Margin="223,96,144,197" />
-        <TextBlock x:Name="dndText" FontSize="26" Height="31" Margin="559,91,18,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="hours" VerticalAlignment="Top" Width="76"/>
-        <TextBlock x:Name="dndInfoTextBlock" TextAlignment="Center" HorizontalAlignment="Center" FontSize="26" Height="31" Margin="514,88,86,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding ElementName=dndSlider, Path=Value}" VerticalAlignment="Top" Width="53"/>
+                <CheckBox x:Name="dndCheckBox" Margin="21,85,571.667,77" Visibility="Hidden">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+                <TextBlock x:Name="dndTimerTextBlock" Visibility="Hidden" HorizontalAlignment="Left" FontSize="24" Height="31" Margin="67,91,0,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="Quiet Hours:" VerticalAlignment="Top" Width="151"/>
+                <Slider x:Name="dndSlider" Visibility="Hidden" IsSnapToTickEnabled="True" TickFrequency="0.5"  Maximum="5" Margin="223,96,144,197" />
+                <TextBlock x:Name="dndText" Visibility="Hidden" FontSize="26" Height="31" Margin="559,91,18,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="hours" VerticalAlignment="Top" Width="76"/>
+                <TextBlock x:Name="dndInfoTextBlock" Visibility="Hidden" TextAlignment="Center" HorizontalAlignment="Center" FontSize="26" Height="31" Margin="514,88,86,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding ElementName=dndSlider, Path=Value}" VerticalAlignment="Top" Width="53"/>
+            </Grid>
+        </materialDesign:Card>
 
-        <TextBlock x:Name="statusText" TextAlignment="Center" HorizontalAlignment="Center" FontSize="26" Height="31" Margin="23,256,558.667,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="73"/>
-        <Button x:Name="startButton" Content="Start" Height="48" Margin="101,247,284,0" VerticalAlignment="Top" Background="LightGreen" Click="button_Click"/>
-        <Button x:Name="undoButton" Content="Undo" HorizontalAlignment="Left" Margin="435,247,0,0" Width="132" Background="IndianRed" Click="button1_Click" Height="48" VerticalAlignment="Top"/>
+        
+        <materialDesign:Card Padding="2" Margin="4,115,233.667,0" Height="188" >
+            <TextBlock x:Name="sleepTime" TextAlignment="Left" HorizontalAlignment="Left" FontSize="18" Height="31" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding}" VerticalAlignment="Top" Width="73" Margin="10,26,0,0"/>
+        </materialDesign:Card>
+
+        <Button x:Name="startButton" Content="Start" FontSize="36" Height="73" Margin="205,230,179.667,0" VerticalAlignment="Top" Background="LightGreen" Click="button_Click"/>
+        <Button x:Name="undoButton" Content="Stop" FontSize="36" Margin="491,230,44.667,0" Background="IndianRed" Click="button1_Click" Height="73" VerticalAlignment="Top"/>
     </Grid>
 </Window>

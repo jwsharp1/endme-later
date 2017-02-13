@@ -12,6 +12,9 @@ namespace EndMe_Later
     public partial class MainWindow : System.Windows.Window
     {
         SleepTimer st = new SleepTimer();
+        dndTimer dndt = new dndTimer();
+        int sleepCount = 0;
+        bool sleeping;
 
         public MainWindow()
         {
@@ -25,15 +28,22 @@ namespace EndMe_Later
             {
                 int sleepValue = (int)(sleepSlider.Value * 3600);
                 st.makeSleepTimer(sleepValue);
-                statusText.Text = "set";
+                sleeping = true;
+            }
+
+            if (dndCheckBox.IsChecked == true)
+            {
             }
         }
 
         // button for canceling shutdown
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            st.stopSleepTimer();
-            statusText.Text = "stop";
+            if (sleeping)
+            {
+                st.stopSleepTimer();
+                sleeping = false;
+            }
         }
     }
 }
