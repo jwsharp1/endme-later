@@ -4,7 +4,6 @@ namespace EndMe_Later
 {
     public partial class MainWindow
     {
-        public const int HOUR_IN_SECONDS = 36;
         Timer t = new Timer();
         bool sleeping;
 
@@ -19,13 +18,11 @@ namespace EndMe_Later
         {
             if (slider.Value != 0)
             {
-                int sliderValue = (int)(slider.Value * HOUR_IN_SECONDS);
-                t.makeTimer(sliderValue);
-
-                if (sleepCheckBox.IsChecked == true)
-                {
-                    sleeping = true;
-                }
+                t.startTimer();
+            }
+            else
+            {
+                timeRemaining.Text = "Choose a time";
             }
         }
 
@@ -34,10 +31,6 @@ namespace EndMe_Later
         {
             t.stopTimer();
             timeRemaining.Text = "Stopped";
-            if (sleeping)
-            {
-                sleeping = false;
-            }
         }
     }
 }
