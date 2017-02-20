@@ -6,33 +6,38 @@ namespace EndMe_Later
 {
     public class Timer
     {
-        int setTime = 0;
         DispatcherTimer progTimer;
         public MainWindow main;
         private Sleep sl = new Sleep();
         private Volume v = new Volume();
-        bool timerStatus;
-        int currentValue, threeQuarter, half, quarter;
-        bool tQDone, hDone, qDone;
+        public const int HOUR_IN_SECONDS = 3600;
+        private int setTime, currentValue, threeQuarter, half, quarter;
+        private bool timerStatus, tQDone, hDone, qDone;
 
         private DateTime TimerStart { get; set; }
 
         // create the timer with the provided amount of time and start it
-        public void makeTimer(int args)
+        public void startTimer()
         {
-            this.TimerStart = DateTime.Now;
-            progTimer = new DispatcherTimer();
-            progTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-            progTimer.Tick += Timer_Tick;
-            progTimer.Start();
-            timerStatus = true;
+            if (timerStatus == false)
+            {
+                this.TimerStart = DateTime.Now;
+                progTimer = new DispatcherTimer();
+                progTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+                progTimer.Tick += Timer_Tick;   // Timer_Tick fires upon every tick
+                progTimer.Start();
 
-            setTime = args;
-            // set the milestones for the volume reducer
-            createMilestones();
+                timerStatus = true;
+                setTime = (int)(main.slider.Value * HOUR_IN_SECONDS);
+
+                if(main.volumeCheckBox.IsChecked == true)
+                {
+                    createVolMilestones();     // set the milestones for the volume reducer
+                }
+            }
         }
 
-        private void createMilestones()
+        private void createVolMilestones()
         {
             threeQuarter = (int)(setTime * .75);
             half = (int)(setTime * .5);
@@ -48,6 +53,7 @@ namespace EndMe_Later
             if (timerStatus)
             {
                 progTimer.Stop();
+                timerStatus = false;
             }
         }
 
@@ -60,40 +66,44 @@ namespace EndMe_Later
             {
                 progTimer.Stop();
                 sl.sleep();
-                //displayMessage();
             }
-            
+
             if (main.volumeCheckBox.IsChecked == true)
             {
-                if (currentValue == threeQuarter)
-                {
-                    if (!tQDone)
-                    {
-                        v.SetVolume((int)(v.GetVolume() * .75));
-                        tQDone = true;
-                    }
-                }
-                if (currentValue == half)
-                {
-                    if (!hDone)
-                    {
-                        v.SetVolume((int)(v.GetVolume() * .5));
-                        hDone = true;
-                    }
-                }
-                if (currentValue == quarter)
-                {
-                    if (!qDone)
-                    {
-                        v.SetVolume((int)(v.GetVolume() * .25));
-                        qDone = true;
-                    }
-                }
+                checkReduceVolume();
             }
-            setRemainingTime(currentValue);
+            setDisplayedTime(currentValue);
         }
 
-        public void setRemainingTime(int currTime)
+        public void checkReduceVolume()
+        {
+            if (currentValue == threeQuarter)
+            {
+                if (!tQDone)
+                {
+                    v.SetVolume((int)(v.GetVolume() * .75));
+                    tQDone = true;
+                }
+            }
+            if (currentValue == half)
+            {
+                if (!hDone)
+                {
+                    v.SetVolume((int)(v.GetVolume() * .5));
+                    hDone = true;
+                }
+            }
+            if (currentValue == quarter)
+            {
+                if (!qDone)
+                {
+                    v.SetVolume((int)(v.GetVolume() * .25));
+                    qDone = true;
+                }
+            }
+        }
+
+        public void setDisplayedTime(int currTime)
         {
             int hr, min, sec, secRemain = (setTime - currTime);
             hr = secRemain / 3600;
