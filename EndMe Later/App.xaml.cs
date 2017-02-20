@@ -5,7 +5,7 @@ namespace EndMe_Later
 {
     public partial class App : Application
     {
-        private System.Windows.Forms.NotifyIcon notif;
+        /*private System.Windows.Forms.NotifyIcon notif;
         private bool reallyQuit;
 
         protected override void OnStartup(StartupEventArgs e)
@@ -61,5 +61,6 @@ namespace EndMe_Later
                 MainWindow.Hide(); // A hidden window can be shown again, a closed one not
             }
         }
+        */
     }
 }

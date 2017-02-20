@@ -1,49 +1,36 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Windows.Input;
-using System.Windows.Threading;
-using System.Windows.Forms;
+﻿using System.Windows;
 
 namespace EndMe_Later
 {
-    public partial class MainWindow : System.Windows.Window
+    public partial class MainWindow
     {
-        SleepTimer st = new SleepTimer();
-        dndTimer dndt = new dndTimer();
-        int sleepCount = 0;
+        Timer t = new Timer();
         bool sleeping;
 
         public MainWindow()
         {
             InitializeComponent();
+            t.main = this;
         }
 
         // calculate sleep time in seconds and send to sdtimer
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (sleepCheckBox.IsChecked == true)
+            if (slider.Value != 0)
             {
-                int sleepValue = (int)(sleepSlider.Value * 3600);
-                st.makeSleepTimer(sleepValue);
-                sleeping = true;
+                t.startTimer();
             }
-
-            if (dndCheckBox.IsChecked == true)
+            else
             {
+                timeRemaining.Text = "Choose a time";
             }
         }
 
         // button for canceling shutdown
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            if (sleeping)
-            {
-                st.stopSleepTimer();
-                sleeping = false;
-            }
+            t.stopTimer();
+            timeRemaining.Text = "Stopped";
         }
     }
 }
