@@ -1,39 +1,17 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Threading;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EndMe_Later
 {
-    public class SleepTimer : INotifyPropertyChanged
+    public class SleepTimer
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        //int sleepTime = 0;
-        public int _sleepTime;
-        DispatcherTimer sleepTimer, dndTimer;
+        int sleepTime = 0;
+        DispatcherTimer sleepTimer;
+        public MainWindow main;
+        int currentValue;
 
-        private void OnPropertyChanged(String property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
-        }
-
-        public int sleepTime
-        {
-            get
-            {
-                return _sleepTime;
-            }
-            set
-            {
-                _sleepTime = value;
-                OnPropertyChanged("SleepTime");
-            }
-        }
+        private DateTime TimerStart { get; set; }
 
         private void sleep()
         {
@@ -48,8 +26,6 @@ namespace EndMe_Later
             process.StartInfo = startInfo;
             process.Start();
         }
-
-        private DateTime TimerStart { get; set; }
 
         // create the timer with the provided amount of time and start it
         public void makeSleepTimer(int args)
@@ -70,18 +46,32 @@ namespace EndMe_Later
         // handles what happens when the timer ticks
         private void sleepTimer_Tick(object sender, EventArgs e)
         {
-            var currentValue = DateTime.Now - this.TimerStart;
-            if (sleepTime == currentValue.Seconds)
+            currentValue = (DateTime.Now - this.TimerStart).Seconds;
+
+            if (sleepTime == currentValue)
             {
                 sleepTimer.Stop();
-                sleep();
+                //sleep();
+                displayMessage();
             }
-            //this.seconds.Text = currentValue.Seconds.ToString();
+            setRemainingTime(currentValue);
         }
 
-        public string getRemainingTime()
+        public void setRemainingTime(int currTime)
         {
-            return sleepTimer.Interval.TotalHours + ":" + sleepTimer.Interval.TotalMinutes;
+            int hr, min, sec, secRemain = (sleepTime - currTime);
+            hr = secRemain / 3600;
+            min = (secRemain % 3600) / 60;
+            sec = secRemain % 60;
+            string remTime = hr.ToString() + ":" + min.ToString() + ":" + sec.ToString();
+
+            main.timeRemaining.Text = remTime;
+        }
+
+        // debug method, use this instead of sleep() to test timer functionality
+        private void displayMessage()
+        {
+            MessageBox.Show("Do you want to close this window?", "Confirmation", MessageBoxButton.OK);
         }
     }
 }

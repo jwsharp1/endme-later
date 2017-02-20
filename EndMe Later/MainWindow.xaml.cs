@@ -1,25 +1,18 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Windows.Input;
-using System.Windows.Threading;
-using System.Windows.Forms;
+﻿using System.Windows;
 
 namespace EndMe_Later
 {
-    public partial class MainWindow : System.Windows.Window
+    public partial class MainWindow
     {
+        public const int HOUR_IN_SECONDS = 3600;
         SleepTimer st = new SleepTimer();
-        dndTimer dndt = new dndTimer();
-        int sleepCount = 0;
         bool sleeping;
 
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new SleepTimer();
+            this.DataContext = new SleepTimer();
+            st.main = this;
         }
 
         // calculate sleep time in seconds and send to sdtimer
@@ -27,13 +20,9 @@ namespace EndMe_Later
         {
             if (sleepCheckBox.IsChecked == true)
             {
-                int sleepValue = (int)(sleepSlider.Value * 3600);
+                int sleepValue = (int)(slider.Value * HOUR_IN_SECONDS);
                 st.makeSleepTimer(sleepValue);
                 sleeping = true;
-            }
-
-            if (dndCheckBox.IsChecked == true)
-            {
             }
         }
 
@@ -43,6 +32,7 @@ namespace EndMe_Later
             if (sleeping)
             {
                 st.stopSleepTimer();
+                timeRemaining.Text = "Stopped";
                 sleeping = false;
             }
         }

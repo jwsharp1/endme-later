@@ -11,41 +11,47 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Title="EndMe Later.exetreme" Height="350" Width="661.283"
+        Title="EndMe Later.exetreme" Height="438" Width="462.283"
         ShowInTaskbar="False"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <materialDesign:Card Padding="4" Margin="4,4,3.667,0" Height="216" >
-            <Grid>
-                <CheckBox x:Name="sleepCheckBox" Margin="22,25,452.667,123">
-                    <CheckBox.LayoutTransform>
-                        <ScaleTransform ScaleX="2" ScaleY="2" />
-                    </CheckBox.LayoutTransform>
-                </CheckBox>
-                <TextBlock x:Name="sleepTimerTextBlock" HorizontalAlignment="Left" FontSize="24" Height="31" Margin="67,40,0,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="Sleep Timer:" VerticalAlignment="Top" Width="136"/>
-                <Slider x:Name="sleepSlider" IsSnapToTickEnabled="True" TickFrequency="0.5"  Maximum="5" Margin="214,43,132.667,125" />
-                <TextBlock x:Name="hoursText" FontSize="26" Height="31" Margin="544,38,10.667,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="hours" VerticalAlignment="Top" Width="76"/>
-                <TextBlock x:Name="sleepInfoTextBlock" TextAlignment="Center" HorizontalAlignment="Center" FontSize="26" Height="31" Margin="498,38,79.667,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding ElementName=sleepSlider, Path=Value}" VerticalAlignment="Top" Width="53"/>
+        <materialDesign:Snackbar>
 
-                <CheckBox x:Name="dndCheckBox" Margin="21,85,571.667,77" Visibility="Hidden">
+        </materialDesign:Snackbar>
+        <materialDesign:Card Margin="4,4,4,0" Height="281" >
+            <Grid>
+                <TextBlock x:Name="section1" HorizontalAlignment="Left" FontSize="22" Height="31" Margin="10,7,0,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="1. Choose your options" VerticalAlignment="Top" Width="271"/>
+                <CheckBox x:Name="sleepCheckBox" Margin="22,40,368,198">
                     <CheckBox.LayoutTransform>
                         <ScaleTransform ScaleX="2" ScaleY="2" />
                     </CheckBox.LayoutTransform>
                 </CheckBox>
-                <TextBlock x:Name="dndTimerTextBlock" Visibility="Hidden" HorizontalAlignment="Left" FontSize="24" Height="31" Margin="67,91,0,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="Quiet Hours:" VerticalAlignment="Top" Width="151"/>
-                <Slider x:Name="dndSlider" Visibility="Hidden" IsSnapToTickEnabled="True" TickFrequency="0.5"  Maximum="5" Margin="223,96,144,197" />
-                <TextBlock x:Name="dndText" Visibility="Hidden" FontSize="26" Height="31" Margin="559,91,18,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="hours" VerticalAlignment="Top" Width="76"/>
-                <TextBlock x:Name="dndInfoTextBlock" Visibility="Hidden" TextAlignment="Center" HorizontalAlignment="Center" FontSize="26" Height="31" Margin="514,88,86,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding ElementName=dndSlider, Path=Value}" VerticalAlignment="Top" Width="53"/>
+                <TextBlock x:Name="sleepTitle" HorizontalAlignment="Left" FontSize="22" Height="31" Margin="67,49,0,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="Shutdown Timer" VerticalAlignment="Top" Width="182"/>
+                <TextBlock x:Name="sleepDesc" HorizontalAlignment="Left" FontSize="14" Height="24" Margin="67,85,0,0" TextWrapping="Wrap" Text="Shut down your computer once the timer expires." VerticalAlignment="Top" Width="356"/>
+
+                <CheckBox x:Name="volumeCheckBox" Margin="22,100,368,138">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+                <TextBlock x:Name="volumeTitle" HorizontalAlignment="Left" FontSize="24" Height="31" Margin="67,109,0,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="Volume Reducer" VerticalAlignment="Top" Width="182"/>
+                <TextBlock x:Name="volumeDesc" HorizontalAlignment="Left" FontSize="14" Height="26" Margin="67,145,0,0" TextWrapping="Wrap" Text="Progressively lower computer volume over time." VerticalAlignment="Top" Width="317"/>
+
+                <TextBlock x:Name="section2" HorizontalAlignment="Left" FontSize="22" Height="31" Margin="10,200,0,0" FontWeight="DemiBold" TextWrapping="Wrap" Text="2. Set the desired time using the slider" VerticalAlignment="Top" Width="413"/>
+                <Slider x:Name="slider" IsSnapToTickEnabled="True" TickFrequency="0.5"  Maximum="5" Margin="67,236,68,10" />
             </Grid>
         </materialDesign:Card>
 
 
-        <materialDesign:Card Padding="2" Margin="4,115,211,0" Height="188" >
-            <TextBlock x:Name="sleepTime" TextAlignment="Left" HorizontalAlignment="Left" FontSize="18" Height="31" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding Path=sleepTime}" VerticalAlignment="Top" Width="93" Margin="10,26,0,0"/>
+        <materialDesign:Card Margin="4,150,126,0" Height="231" >
+            <Grid>
+                <TextBlock x:Name="timeRemainingText" FontSize="18" Height="31" FontWeight="DemiBold" TextWrapping="Wrap" Text="Time Remaining" TextAlignment="Center" Margin="10,14,10,36"/>
+                <TextBlock x:Name="timeRemaining" FontSize="24" Height="31" FontWeight="DemiBold" TextWrapping="Wrap" Text="0" TextAlignment="Center" Margin="28,40,28,0"/>
+            </Grid>
         </materialDesign:Card>
 
-        <Button x:Name="startButton" Content="Start" FontSize="36" Height="73" Margin="246,230,139,0" VerticalAlignment="Top" Background="LightGreen" Click="button_Click"/>
-        <Button x:Name="undoButton" Content="Stop" FontSize="36" Margin="526,230,10,0" Background="IndianRed" Click="button1_Click" Height="73" VerticalAlignment="Top"/>
+        <Button x:Name="startButton" Content="Start" FontSize="24" Height="Auto" Background="LightGreen" Click="button_Click" Margin="228,299,120,26"/>
+        <Button x:Name="undoButton" Content="Stop" FontSize="24" Background="IndianRed" Click="button1_Click" Height="Auto" Margin="344,299,10,26"/>
     </Grid>
 </Window>
