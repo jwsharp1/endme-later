@@ -11,7 +11,7 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Title="EndMe Later.exetreme" Height="438" Width="462.283"
+        Title="EndMe Later.exetreme public v1" Height="438" Width="462.283"
         ShowInTaskbar="False"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
