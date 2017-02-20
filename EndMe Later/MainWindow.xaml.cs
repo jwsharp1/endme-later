@@ -5,7 +5,6 @@ namespace EndMe_Later
     public partial class MainWindow
     {
         Timer t = new Timer();
-        bool sleeping;
 
         public MainWindow()
         {

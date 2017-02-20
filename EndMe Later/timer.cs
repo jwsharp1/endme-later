@@ -62,10 +62,13 @@ namespace EndMe_Later
         {
             currentValue = (int)(DateTime.Now - this.TimerStart).TotalSeconds;
 
-            if (setTime == currentValue)
+            if (setTime == currentValue)    // when the timer runs out
             {
                 progTimer.Stop();
-                sl.sleep();
+                if(main.sleepCheckBox.IsChecked == true)
+                {
+                    sl.sleep();
+                }
             }
 
             if (main.volumeCheckBox.IsChecked == true)
@@ -81,7 +84,7 @@ namespace EndMe_Later
             {
                 if (!tQDone)
                 {
-                    v.SetVolume((int)(v.GetVolume() * .75));
+                    v.SetVolume((int)(v.GetVolume() * .25));
                     tQDone = true;
                 }
             }
@@ -97,7 +100,7 @@ namespace EndMe_Later
             {
                 if (!qDone)
                 {
-                    v.SetVolume((int)(v.GetVolume() * .25));
+                    v.SetVolume((int)(v.GetVolume() * .75));
                     qDone = true;
                 }
             }
