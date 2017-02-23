@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -34,6 +35,8 @@ namespace EndMe_Later
                 {
                     createVolMilestones();     // set the milestones for the volume reducer
                 }
+
+                PreventSleepAndMonitorOff();    // disable autosleep and keep the monitor from turning itself off
             }
         }
 
@@ -54,6 +57,7 @@ namespace EndMe_Later
             {
                 progTimer.Stop();
                 timerStatus = false;
+                AllowSleep();
             }
         }
 
@@ -67,6 +71,7 @@ namespace EndMe_Later
                 progTimer.Stop();
                 if(main.sleepCheckBox.IsChecked == true)
                 {
+                    AllowSleep();   // allow computer to sleep
                     sl.sleep();
                 }
             }
@@ -122,5 +127,25 @@ namespace EndMe_Later
         {
             MessageBox.Show("Do you want to close this window?", "Confirmation", MessageBoxButton.OK);
         }
+
+        private void PreventSleepAndMonitorOff()
+        {
+            NativeMethods.SetThreadExecutionState(NativeMethods.ES_CONTINUOUS | NativeMethods.ES_SYSTEM_REQUIRED | NativeMethods.ES_DISPLAY_REQUIRED);
+        }
+
+        private void AllowSleep()
+        {
+            NativeMethods.SetThreadExecutionState(NativeMethods.ES_CONTINUOUS);
+        }
+    }
+
+    internal static class NativeMethods
+    {
+        // Import SetThreadExecutionState Win32 API and necessary flags
+        [DllImport("kernel32.dll")]
+        public static extern uint SetThreadExecutionState(uint esFlags);
+        public const uint ES_CONTINUOUS = 0x80000000;
+        public const uint ES_SYSTEM_REQUIRED = 0x00000001;
+        public const uint ES_DISPLAY_REQUIRED = 0x00000002;
     }
 }
