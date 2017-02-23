@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace EndMe_Later
 {
@@ -17,6 +19,9 @@ namespace EndMe_Later
         {
             if (slider.Value != 0)
             {
+                slider.IsEnabled = false;
+                sleepCheckBox.IsEnabled = false;
+                volumeCheckBox.IsEnabled = false;
                 t.startTimer();
             }
             else
@@ -29,7 +34,9 @@ namespace EndMe_Later
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             t.stopTimer();
-            timeRemaining.Text = "Stopped";
+            slider.IsEnabled = true;
+            sleepCheckBox.IsEnabled = true;
+            volumeCheckBox.IsEnabled = true;
         }
     }
 }

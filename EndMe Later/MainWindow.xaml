@@ -12,7 +12,8 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Title="EndMe Later.exetreme public v1" Height="438" Width="462.283"
-        ShowInTaskbar="False"
+        ShowInTaskbar="True"
+        ResizeMode="CanMinimize"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
@@ -43,15 +44,17 @@
             </Grid>
         </materialDesign:Card>
 
+        <Grid>
+            <materialDesign:Card Margin="4,0,0,9.667" Height="93" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="221">
+                <Grid>
+                    <TextBlock x:Name="timeRemainingText" FontSize="18" Height="31" FontWeight="DemiBold" TextWrapping="Wrap" Text="Time Remaining" TextAlignment="Center" Margin="10,14,10,36"/>
+                    <TextBlock x:Name="timeRemaining" FontSize="24" Height="31" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding ElementName=slider, Path=Value}" TextAlignment="Center" Margin="10,45,10,5"/>
+                </Grid>
+            </materialDesign:Card>
+            <Button x:Name="startButton" Content="Start" FontSize="24" Height="82" Background="LightGreen" BorderBrush="LightGreen" Click="button_Click" Margin="238,0,0,20.667" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="94"/>
+            <Button x:Name="undoButton" Content="Stop" FontSize="24" Background="IndianRed" BorderBrush="IndianRed" Click="button1_Click" Height="82" Margin="344,0,0,20.667" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="94"/>
+        </Grid>
 
-        <materialDesign:Card Margin="4,150,120,0" Height="231">
-            <Grid>
-                <TextBlock x:Name="timeRemainingText" FontSize="18" Height="31" FontWeight="DemiBold" TextWrapping="Wrap" Text="Time Remaining" TextAlignment="Center" Margin="10,14,10,36"/>
-                <TextBlock x:Name="timeRemaining" FontSize="24" Height="31" FontWeight="DemiBold" TextWrapping="Wrap" Text="{Binding ElementName=slider, Path=Value}" TextAlignment="Center" Margin="10,45,10,5"/>
-            </Grid>
-        </materialDesign:Card>
 
-        <Button x:Name="startButton" Content="Start" FontSize="24" Height="Auto" Background="LightGreen" BorderBrush="LightGreen" Click="button_Click" Margin="228,299,120,21"/>
-        <Button x:Name="undoButton" Content="Stop" FontSize="24" Background="IndianRed" BorderBrush="IndianRed" Click="button1_Click" Height="Auto" Margin="344,299,10,21"/>
     </Grid>
 </Window>
