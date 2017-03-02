@@ -6,6 +6,29 @@ namespace EndMe_Later
 {
     class Volume
     {
+        private int startVolume;
+        private int tenthVolume;
+
+        public void setStartVolume()
+        {
+            startVolume = GetVolume();
+        }
+
+        public int getStartVolume()
+        {
+            return startVolume;
+        }
+
+        public void setTenthVolume()
+        {
+            tenthVolume = (int)(Math.Ceiling(getStartVolume() / 10.0));
+        }
+
+        public int getTenthVolume()
+        {
+            return tenthVolume;
+        }
+
         public int GetVolume()
         {
             int result = 100;
@@ -35,6 +58,5 @@ namespace EndMe_Later
             {
             }
         }
-
     }
 }

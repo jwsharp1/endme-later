@@ -93,6 +93,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -112,7 +113,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Brightness.cs" />
     <Compile Include="dndTimer.cs" />
+    <Compile Include="Reducer.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Sleep.cs" />
     <Compile Include="Timer.cs" />
