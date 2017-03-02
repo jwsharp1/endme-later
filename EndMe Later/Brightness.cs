@@ -5,9 +5,9 @@ namespace EndMe_Later
 {
     class Brightness
     {
-        public int startBrightness;
+        private int startBrightness;
 
-        public int tenthBrightness;
+        private int tenthBrightness;
 
         public void setStartBrightness()
         {
@@ -29,7 +29,7 @@ namespace EndMe_Later
             return tenthBrightness;
         }
 
-        public int GetBrightness()
+        private int GetBrightness()
         {
             //define scope (namespace)
             System.Management.ManagementScope s = new System.Management.ManagementScope("root\\WMI");

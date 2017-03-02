@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using EndMe_Later.Properties;
+using System.Windows.Forms;
 
 namespace EndMe_Later
 {
-    public partial class App : Application
+    public partial class App
     {
         /*private System.Windows.Forms.NotifyIcon notif;
         private bool reallyQuit;

@@ -1,20 +1,29 @@
-﻿using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
+﻿using System.Windows;
+using System.ComponentModel;
+using EndMe_Later.Properties;
+using System.Windows.Forms;
+using System.Linq;
 
 namespace EndMe_Later
 {
     public partial class MainWindow
     {
         Timer t;
-        public bool sleepEnabled, brightEnabled, volumeEnabled;
+        Brightness b;
 
         public MainWindow()
         {
             InitializeComponent();
-            t = new Timer();
-            t.main = this;
+            t = new Timer(this);
+            b = new Brightness();
+
+            byte[] temp = b.GetBrightnessLevels();
+            if (temp.Count() == 0)
+            {
+                brightnessDesc.Text = "Feature unavailable on this machine.";
+                brightnessCheckBox.IsEnabled = false;
+            }
+            //t.main = this;
         }
 
         // calculate sleep time in seconds and send to sdtimer
@@ -23,7 +32,6 @@ namespace EndMe_Later
             if (slider.Value != 0)
             {
                 disableInputs();
-                featureCheck();
                 t.startTimer();
             }
             else
@@ -38,19 +46,16 @@ namespace EndMe_Later
             enableInputs();
         }
 
-        private void featureCheck()
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            if (brightnessCheckBox.IsChecked == true)
+            DialogResult dr = System.Windows.Forms.MessageBox.Show("Are you sure you want to quit?\nAny running timers will be stopped.", "Quit?", MessageBoxButtons.YesNo);
+            if (dr == System.Windows.Forms.DialogResult.Yes)
             {
-                brightEnabled = true;
+                Settings.Default.Save();
             }
-            if (sleepCheckBox.IsChecked == true)
+            else
             {
-                sleepEnabled = true;
-            }
-            if (volumeCheckBox.IsChecked == true)
-            {
-                volumeEnabled = true;
+                e.Cancel = true;
             }
         }
 

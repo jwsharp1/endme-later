@@ -8,13 +8,18 @@ namespace EndMe_Later
     public class Timer
     {
         DispatcherTimer progTimer;
-        public MainWindow main;
+        private DateTime TimerStart { get; set; }
+        private MainWindow main;
         private Sleep sl;
         private Reducer r;
         private const int HOUR_IN_SECONDS = 100;
         protected int timerSetTime_Sec, currentTimerValue_Sec, tenthTime;
         private bool timerOn, once = false;
-        private DateTime TimerStart { get; set; }
+
+        public Timer(MainWindow main)
+        {
+            this.main = main;
+        }
 
         // create the timer with the provided amount of time and start it
         public void startTimer()
@@ -23,7 +28,6 @@ namespace EndMe_Later
             {
                 createTimer();
                 progTimer.Start();
-            
                 timerOn = true;
                 timerSetTime_Sec = (int)(main.slider.Value * HOUR_IN_SECONDS);
                 tenthTime = (int)(timerSetTime_Sec / 10);

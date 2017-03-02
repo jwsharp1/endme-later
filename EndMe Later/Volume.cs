@@ -29,7 +29,7 @@ namespace EndMe_Later
             return tenthVolume;
         }
 
-        public int GetVolume()
+        private int GetVolume()
         {
             int result = 100;
             try
