@@ -18,7 +18,7 @@
         <StackPanel>
             <materialDesign:ColorZone Padding="4" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" MouseDown="ColorZone_MouseDown">
                 <Grid>
-                    <TextBlock x:Name="title" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold" Foreground="Black" Text="EndMe Later.exetreme"/>
+                    <TextBlock x:Name="title" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold" Foreground="Black" Text="EndMe Later beta v2"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button x:Name="minimizeButton" Margin="2" Click="minimizeButton_Click">
                             <materialDesign:PackIcon Kind="WindowMinimize"/>
@@ -81,7 +81,7 @@
                         </Grid>
                 </materialDesign:Card>
                 <Button x:Name="startButton" Margin="4" Content="Start" Foreground="Black" FontSize="24" Background="LightGreen" BorderBrush="LightGreen" Click="start_Click" Height="77" Width="94"/>
-                <Button x:Name="undoButton" Margin="4" Content="Stop" Foreground="Black" FontSize="24" Background="IndianRed" BorderBrush="IndianRed" Click="stop_Click" Height="77" Width="94"/>
+                <Button x:Name="stopButton" Margin="4" Content="Stop" Foreground="Black" FontSize="24" Background="IndianRed" BorderBrush="IndianRed" Click="stop_Click" Height="77" Width="94"/>
             </StackPanel>
         </StackPanel>
     </Grid>

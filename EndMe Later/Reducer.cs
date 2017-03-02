@@ -48,7 +48,7 @@ namespace EndMe_Later
             }
         }
 
-        public void reduceVolume()
+        private void reduceVolume()
         {
             if (first_V)
             {
@@ -59,7 +59,7 @@ namespace EndMe_Later
             first_V = true;
         }
 
-        public void reduceBrightness()
+        private void reduceBrightness()
         {
             if (first_B)
             {

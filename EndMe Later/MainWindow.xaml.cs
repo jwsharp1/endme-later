@@ -15,6 +15,7 @@ namespace EndMe_Later
         {
             InitializeComponent();
             t = new Timer(this);
+            stopButton.IsEnabled = false;
 
             if (!brightnessAvailability())  // disable the brightness feature if it is unsupported
             {
@@ -73,6 +74,7 @@ namespace EndMe_Later
 
         private void disableInputs()
         {
+            stopButton.IsEnabled = true;
             slider.IsEnabled = false;
             sleepCheckBox.IsEnabled = false;
             volumeCheckBox.IsEnabled = false;
@@ -82,6 +84,7 @@ namespace EndMe_Later
 
         private void enableInputs()
         {
+            stopButton.IsEnabled = false;
             slider.IsEnabled = true;
             sleepCheckBox.IsEnabled = true;
             volumeCheckBox.IsEnabled = true;
