@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Windows;
 using System.Windows.Threading;
 
 namespace EndMe_Later
@@ -20,7 +19,6 @@ namespace EndMe_Later
             this.main = main;
         }
 
-        // create the timer with the provided amount of time and start it
         public void startTimer()
         {
             if (timerOn == false)
@@ -28,17 +26,24 @@ namespace EndMe_Later
                 createTimer();
                 progTimer.Start();
                 timerOn = true;
-                timerSetTime_Sec = (int)main.slider.Value;
-                tenthTime = (int)(timerSetTime_Sec / 10);
+                timerSetTime_Sec = (int)main.slider.Value;  // get the amt of time from the slider
+                tenthTime = (int)(timerSetTime_Sec / 10);   // calculate 1/10 of the timer's time for the reducer milestones
 
-                // if at least one reducer is active
-                if (main.volumeCheckBox.IsChecked == true || main.brightnessCheckBox.IsChecked == true)
+                if (main.volumeCheckBox.IsChecked == true || main.brightnessCheckBox.IsChecked == true)     // if at least one reducer is active
                 {
                     r = new Reducer(main);      // create the reducer object
                 }
 
-                    KeepPCAwake();    // disable autosleep and keep the monitor from turning itself off
+                KeepPCAwake();    // disable autosleep and keep the monitor from turning itself off
             }
+        }
+
+        private void createTimer()
+        {
+            this.TimerStart = DateTime.Now;
+            progTimer = new DispatcherTimer();
+            progTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            progTimer.Tick += Timer_Tick;   // Timer_Tick fires upon every tick
         }
 
         public void stopTimer(bool b)
@@ -48,21 +53,20 @@ namespace EndMe_Later
                 progTimer.Stop();
                 timerOn = false;
                 AllowSleep();
-                if (b == true) { checkSleep(); }
+                if (b == true) { checkSleep(); }    // if stopTimer was called by the timer expiring w/ sleep feature enabled
             }
         }
 
-        // handles what happens when the timer ticks
         private void Timer_Tick(object sender, EventArgs e)
         {
-            currentTimerValue_Sec = (int)(DateTime.Now - this.TimerStart).TotalSeconds;
+            currentTimerValue_Sec = (int)(DateTime.Now - this.TimerStart).TotalSeconds;     // calculate the time that has passed
 
-            if(main.brightnessCheckBox.IsChecked == true || main.volumeCheckBox.IsChecked == true)
+            if(main.brightnessCheckBox.IsChecked == true || main.volumeCheckBox.IsChecked == true)    // if one of the reducer options is active
             {
-                reduceHandler();    // if one of the reducer options is active, execute this
+                reduceHandler();
             }
 
-            if(currentTimerValue_Sec == timerSetTime_Sec)
+            if(currentTimerValue_Sec == timerSetTime_Sec)   // when the timer expires
             {
                 stopTimer(true);
             }
@@ -70,7 +74,7 @@ namespace EndMe_Later
             setDisplayedTime(currentTimerValue_Sec);    // update the displayed time
         }
 
-        public void setDisplayedTime(int currTime)
+        private void setDisplayedTime(int currTime)
         {
             string fmt = "00.##";
             int hr, min, sec, secRemain = (timerSetTime_Sec - currTime);
@@ -80,14 +84,6 @@ namespace EndMe_Later
             string remTime = hr.ToString(fmt) + "h " + min.ToString(fmt) + "m " + sec.ToString(fmt) + "s";
 
             main.timeRemaining.Text = remTime;
-        }
-
-        private void createTimer()
-        {
-            this.TimerStart = DateTime.Now;
-            progTimer = new DispatcherTimer();
-            progTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-            progTimer.Tick += Timer_Tick;   // Timer_Tick fires upon every tick
         }
 
         private void reduceHandler()
@@ -102,12 +98,6 @@ namespace EndMe_Later
             {
                 once = false;
             }
-        }
-
-        // debug method, use this instead of sleep() to test timer functionality
-        private void displayMessage()
-        {
-            MessageBox.Show("Do you want to close this window?", "Confirmation", MessageBoxButton.OK);
         }
 
         private void checkSleep()
@@ -128,7 +118,6 @@ namespace EndMe_Later
         {
             NativeMethods.SetThreadExecutionState(NativeMethods.ES_CONTINUOUS);
         }
-
     }
 
     internal static class NativeMethods

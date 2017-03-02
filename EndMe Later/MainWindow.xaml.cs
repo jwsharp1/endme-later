@@ -43,6 +43,21 @@ namespace EndMe_Later
             enableInputs();
         }
 
+        private void minimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            SystemCommands.MinimizeWindow(this);
+        }
+
+        private void quitButton_Click(object sender, RoutedEventArgs e)
+        {
+            SystemCommands.CloseWindow(this);
+        }
+
+        private void ColorZone_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            App.Current.MainWindow.DragMove();
+        }
+
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             DialogResult dr = System.Windows.Forms.MessageBox.Show("Are you sure you want to quit?\nAny running timers will be stopped.", "Quit?", MessageBoxButtons.YesNo);
@@ -86,16 +101,6 @@ namespace EndMe_Later
             else return true;
         }
 
-        private void ColorZone_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            App.Current.MainWindow.DragMove();
-        }
-
-        private void quitButton_Click(object sender, RoutedEventArgs e)
-        {
-            SystemCommands.CloseWindow(this);
-        }
-
         private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             updateTimeRemaining();
@@ -111,11 +116,6 @@ namespace EndMe_Later
             string remTime = hr.ToString(fmt) + "h " + min.ToString(fmt) + "m " + sec.ToString(fmt) + "s";
 
             timeRemaining.Text = remTime;
-        }
-
-        private void minimizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            SystemCommands.MinimizeWindow(this);
         }
     }
 }

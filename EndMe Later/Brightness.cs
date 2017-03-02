@@ -53,8 +53,6 @@ namespace EndMe_Later
             moc.Dispose();
             mos.Dispose();
 
-
-
             return curBrightness;
         }
 
@@ -75,8 +73,6 @@ namespace EndMe_Later
                 System.Management.ManagementObjectCollection moc = mos.Get();
 
                 //store result
-
-
                 foreach (System.Management.ManagementObject o in moc)
                 {
                     BrightnessLevels = (byte[])o.GetPropertyValue("Level");
@@ -89,8 +85,6 @@ namespace EndMe_Later
             }
             catch (Exception)
             {
-                //MessageBox.Show("Sorry, Your System does not support this brightness control...");
-
             }
 
             return BrightnessLevels;

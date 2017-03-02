@@ -9,6 +9,11 @@ namespace EndMe_Later
         public void sleep()
         {
             Application.SetSuspendState(PowerState.Suspend, false, false);
+
+            //----------------
+            // Keep the following code in case a Shutdown option is added later
+            //----------------
+
             /*System.Diagnostics.Process process = new System.Diagnostics.Process();
             System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
             startInfo.FileName = "shutdown";

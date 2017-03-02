@@ -1,6 +1,5 @@
 ﻿using NAudio.CoreAudioApi;
 using System;
-using System.Runtime.InteropServices;
 
 namespace EndMe_Later
 {
