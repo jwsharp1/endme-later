@@ -3,7 +3,6 @@ using System.ComponentModel;
 using EndMe_Later.Properties;
 using System.Windows.Forms;
 using System.Linq;
-using System.Windows.Input;
 
 namespace EndMe_Later
 {
@@ -17,15 +16,14 @@ namespace EndMe_Later
             InitializeComponent();
             t = new Timer(this);
 
-            if (!brightnessAvailability())
+            if (!brightnessAvailability())  // disable the brightness feature if it is unsupported
             {
                 brightnessDesc.Text = "Feature unavailable on this machine.";
                 brightnessCheckBox.IsEnabled = false;
             }
         }
 
-        // calculate sleep time in seconds and send to sdtimer
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void start_Click(object sender, RoutedEventArgs e)
         {
             if (slider.Value != 0)
             {
@@ -38,10 +36,10 @@ namespace EndMe_Later
             }
         }
 
-        // button for canceling shutdown
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void stop_Click(object sender, RoutedEventArgs e)
         {
             t.stopTimer(false);
+            updateTimeRemaining();
             enableInputs();
         }
 
@@ -95,7 +93,29 @@ namespace EndMe_Later
 
         private void quitButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            SystemCommands.CloseWindow(this);
+        }
+
+        private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            updateTimeRemaining();
+        }
+
+        private void updateTimeRemaining()
+        {
+            string fmt = "00.##";
+            int hr, min, sec, secRemain = (int)slider.Value;
+            hr = secRemain / 3600;
+            min = (secRemain % 3600) / 60;
+            sec = secRemain % 60;
+            string remTime = hr.ToString(fmt) + "h " + min.ToString(fmt) + "m " + sec.ToString(fmt) + "s";
+
+            timeRemaining.Text = remTime;
+        }
+
+        private void minimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            SystemCommands.MinimizeWindow(this);
         }
     }
 }

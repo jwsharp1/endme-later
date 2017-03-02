@@ -12,7 +12,6 @@ namespace EndMe_Later
         private MainWindow main;
         private Sleep sl;
         private Reducer r;
-        private const int HOUR_IN_SECONDS = 3600;
         protected int timerSetTime_Sec, currentTimerValue_Sec, tenthTime;
         private bool timerOn, once = false;
 
@@ -29,7 +28,7 @@ namespace EndMe_Later
                 createTimer();
                 progTimer.Start();
                 timerOn = true;
-                timerSetTime_Sec = (int)(main.slider.Value * HOUR_IN_SECONDS);
+                timerSetTime_Sec = (int)main.slider.Value;
                 tenthTime = (int)(timerSetTime_Sec / 10);
 
                 // if at least one reducer is active
@@ -78,7 +77,7 @@ namespace EndMe_Later
             hr = secRemain / 3600;
             min = (secRemain % 3600) / 60;
             sec = secRemain % 60;
-            string remTime = hr.ToString(fmt) + ":" + min.ToString(fmt) + ":" + sec.ToString(fmt);
+            string remTime = hr.ToString(fmt) + "h " + min.ToString(fmt) + "m " + sec.ToString(fmt) + "s";
 
             main.timeRemaining.Text = remTime;
         }
