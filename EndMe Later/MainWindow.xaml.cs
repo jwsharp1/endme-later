@@ -15,15 +15,12 @@ namespace EndMe_Later
         {
             InitializeComponent();
             t = new Timer(this);
-            b = new Brightness();
 
-            byte[] temp = b.GetBrightnessLevels();
-            if (temp.Count() == 0)
+            if (!brightnessAvailability())
             {
                 brightnessDesc.Text = "Feature unavailable on this machine.";
                 brightnessCheckBox.IsEnabled = false;
             }
-            //t.main = this;
         }
 
         // calculate sleep time in seconds and send to sdtimer
@@ -73,8 +70,20 @@ namespace EndMe_Later
             slider.IsEnabled = true;
             sleepCheckBox.IsEnabled = true;
             volumeCheckBox.IsEnabled = true;
-            brightnessCheckBox.IsEnabled = true;
+            if(brightnessAvailability()) { brightnessCheckBox.IsEnabled = true; }
             startButton.IsEnabled = true;
+        }
+
+        private bool brightnessAvailability()
+        {
+            b = new Brightness();
+            byte[] temp = b.GetBrightnessLevels();
+
+            if (temp.Count() == 0)
+            {
+                return false;
+            }
+            else return true;
         }
     }
 }

@@ -89,7 +89,7 @@ namespace EndMe_Later
             }
             catch (Exception)
             {
-                MessageBox.Show("Sorry, Your System does not support this brightness control...");
+                //MessageBox.Show("Sorry, Your System does not support this brightness control...");
 
             }
 
