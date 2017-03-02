@@ -42,14 +42,14 @@ namespace EndMe_Later
             }
         }
 
-        public void stopTimer()
+        public void stopTimer(bool b)
         {
             if (timerOn)
             {
                 progTimer.Stop();
                 timerOn = false;
                 AllowSleep();
-                checkSleep();
+                if (b == true) { checkSleep(); }
             }
         }
 
@@ -65,7 +65,7 @@ namespace EndMe_Later
 
             if(currentTimerValue_Sec == timerSetTime_Sec)
             {
-                stopTimer();
+                stopTimer(true);
             }
 
             setDisplayedTime(currentTimerValue_Sec);    // update the displayed time
@@ -73,11 +73,12 @@ namespace EndMe_Later
 
         public void setDisplayedTime(int currTime)
         {
+            string fmt = "00.##";
             int hr, min, sec, secRemain = (timerSetTime_Sec - currTime);
             hr = secRemain / 3600;
             min = (secRemain % 3600) / 60;
             sec = secRemain % 60;
-            string remTime = hr.ToString() + ":" + min.ToString() + ":" + sec.ToString();
+            string remTime = hr.ToString(fmt) + ":" + min.ToString(fmt) + ":" + sec.ToString(fmt);
 
             main.timeRemaining.Text = remTime;
         }

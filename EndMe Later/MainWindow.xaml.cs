@@ -3,6 +3,7 @@ using System.ComponentModel;
 using EndMe_Later.Properties;
 using System.Windows.Forms;
 using System.Linq;
+using System.Windows.Input;
 
 namespace EndMe_Later
 {
@@ -40,6 +41,7 @@ namespace EndMe_Later
         // button for canceling shutdown
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            t.stopTimer(false);
             enableInputs();
         }
 
@@ -84,6 +86,16 @@ namespace EndMe_Later
                 return false;
             }
             else return true;
+        }
+
+        private void ColorZone_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            App.Current.MainWindow.DragMove();
+        }
+
+        private void quitButton_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
