@@ -10,6 +10,7 @@ namespace EndMe_Later
     {
         Timer t;
         Brightness b;
+        dndTimer d;
 
         public MainWindow()
         {
@@ -64,7 +65,8 @@ namespace EndMe_Later
             DialogResult dr = System.Windows.Forms.MessageBox.Show("Are you sure you want to quit?\nAny running timers will be stopped.", "Quit?", MessageBoxButtons.YesNo);
             if (dr == System.Windows.Forms.DialogResult.Yes)
             {
-                Settings.Default.Save();
+                //Settings.Default.Save();
+                if(dndCheckBox.IsChecked == true) { d = new dndTimer();  d.turnOff(); }  // turn off dnd feature when exiting if it is on
             }
             else
             {
@@ -77,6 +79,7 @@ namespace EndMe_Later
             stopButton.IsEnabled = true;
             slider.IsEnabled = false;
             sleepCheckBox.IsEnabled = false;
+            dndCheckBox.IsEnabled = false;
             volumeCheckBox.IsEnabled = false;
             brightnessCheckBox.IsEnabled = false;
             startButton.IsEnabled = false;
@@ -87,6 +90,7 @@ namespace EndMe_Later
             stopButton.IsEnabled = false;
             slider.IsEnabled = true;
             sleepCheckBox.IsEnabled = true;
+            dndCheckBox.IsEnabled = true;
             volumeCheckBox.IsEnabled = true;
             if(brightnessAvailability()) { brightnessCheckBox.IsEnabled = true; }
             startButton.IsEnabled = true;

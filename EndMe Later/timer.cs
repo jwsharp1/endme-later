@@ -59,8 +59,8 @@ namespace EndMe_Later
             {
                 progTimer.Stop();
                 timerOn = false;
-                d.turnOff();    // turn of dnd
                 AllowSleep();
+                if (main.dndCheckBox.IsChecked == true) { d.turnOff(); }   // turn of dnd
                 if (b == true) { checkSleep(); }    // if stopTimer was called by the timer expiring w/ sleep feature enabled
             }
         }

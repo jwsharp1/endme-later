@@ -2,8 +2,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EndMe_Later"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextOptions.TextFormattingMode="Ideal"
@@ -18,7 +16,7 @@
         <StackPanel>
             <materialDesign:ColorZone Padding="4" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" MouseDown="ColorZone_MouseDown">
                 <Grid>
-                    <TextBlock x:Name="title" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold" Foreground="Black" Text="EndMe Later beta v2"/>
+                    <TextBlock x:Name="title" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold" Foreground="Black" Text="EndMe Later beta v3"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button x:Name="minimizeButton" Margin="2" Click="minimizeButton_Click">
                             <materialDesign:PackIcon Kind="WindowMinimize"/>
@@ -41,7 +39,7 @@
                         </CheckBox>
                         <StackPanel>
                             <TextBlock x:Name="sleepTitle" FontSize="24" Height="31" Text="Sleep Timer" VerticalAlignment="Top"/>
-                            <TextBlock x:Name="sleepDesc" FontSize="14" Height="24" TextWrapping="Wrap" Text="Put your computer to sleep once the timer expires." VerticalAlignment="Bottom"/>
+                            <TextBlock x:Name="sleepDesc" FontSize="14" Height="24" TextWrapping="Wrap" Text="Put your computer to sleep once the timer expires" VerticalAlignment="Bottom"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -65,7 +63,7 @@
                         </CheckBox>
                         <StackPanel>
                             <TextBlock x:Name="volumeTitle" HorizontalAlignment="Left" FontSize="24" Height="31" TextWrapping="Wrap" Text="Volume Reducer" VerticalAlignment="Top"/>
-                            <TextBlock x:Name="volumeDesc" HorizontalAlignment="Left" FontSize="14" Height="26" Text="Progressively lower computer volume over time." VerticalAlignment="Top"/>
+                            <TextBlock x:Name="volumeDesc" HorizontalAlignment="Left" FontSize="14" Height="26" Text="Progressively lower computer volume over time" VerticalAlignment="Top"/>
                         </StackPanel>
                     </StackPanel>
                     
@@ -77,7 +75,7 @@
                         </CheckBox>
                         <StackPanel>
                             <TextBlock x:Name="brightnessTitle" HorizontalAlignment="Left" FontSize="24" Height="31" Text="Brightness Reducer" VerticalAlignment="Top"/>
-                            <TextBlock x:Name="brightnessDesc" HorizontalAlignment="Left" FontSize="14" Height="26" Text="Progressively lower screen brightness over time." VerticalAlignment="Top"/>
+                            <TextBlock x:Name="brightnessDesc" HorizontalAlignment="Left" FontSize="14" Height="26" Text="Progressively lower screen brightness over time" VerticalAlignment="Top"/>
                         </StackPanel>
                     </StackPanel>
 
