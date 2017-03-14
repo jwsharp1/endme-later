@@ -1,61 +1,67 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.Win32;
-using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace EndMe_Later
 {
     class dndTimer
     {
-        private static string KEY_NOTIFICATION_SETTINGS = @"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings";
+        private static string KEY_NOTIFICATION_SETTINGS = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings";
         private static string VALUE_NOTIFICATIONS_ENABLED = "NOC_GLOBAL_SETTING_TOASTS_ENABLED";
-        RegistryKey dndKey;
-        public bool dndStatus = (int)Registry.GetValue(KEY_NOTIFICATION_SETTINGS, VALUE_NOTIFICATIONS_ENABLED, 1) == 0;
+        private static string EXPLORER = string.Format("{0}\\{1}", Environment.GetEnvironmentVariable("WINDIR"), "explorer.exe");
+        private RegistryKey dndKey;
+        private ProcessStartInfo killExplorer, startExplorer;
+        private Process process;
+        private bool dndStatus;
 
         public bool getDndStatus()
         {
-            if ((int)Registry.GetValue(KEY_NOTIFICATION_SETTINGS, VALUE_NOTIFICATIONS_ENABLED, 1) == 0)
+            dndStatus = (int)Registry.GetValue(KEY_NOTIFICATION_SETTINGS, VALUE_NOTIFICATIONS_ENABLED, 1) == 0;
+            if (dndStatus)
             {
-                dndStatus = true;
+                return true;
             }
             else
             {
-                dndStatus = false;
+                return false;
             }
-            return dndStatus;
         }
 
         public void turnOn()
         {
-            dndKey = Registry.CurrentUser.OpenSubKey("SOFTWARE/Microsoft/Windows/CurrentVersion/Notifications/Settings", true);
-            //Registry.SetValue(KEY_NOTIFICATION_SETTINGS, VALUE_NOTIFICATIONS_ENABLED, "1", RegistryValueKind.DWord);
-            int i = dndKey.SubKeyCount;
-            MessageBox.Show("There are " + i + " number of subkeys.");
-            try
+            dndKey = Registry.CurrentUser.OpenSubKey(KEY_NOTIFICATION_SETTINGS, true);
+            if(dndKey != null)
             {
-                dndKey.SetValue("NOC_GLOBAL_SETTING_TOASTS_ENABLED", "1", RegistryValueKind.DWord);
+                dndKey.SetValue(VALUE_NOTIFICATIONS_ENABLED, 0, RegistryValueKind.DWord);
                 dndKey.Close();
             }
-            catch
-            {
-                MessageBox.Show("There was an error.");
-            }
+            restartExplorer();
         }
 
         public void turnOff()
         {
-            dndKey = Registry.CurrentUser.OpenSubKey("SOFTWARE/Microsoft/Windows/CurrentVersion/Notifications/Settings", true);
-            //Registry.SetValue(KEY_NOTIFICATION_SETTINGS, VALUE_NOTIFICATIONS_ENABLED, "0", RegistryValueKind.DWord);
-            try
+            dndKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings", true);
+            if (dndKey != null)
             {
-                dndKey.SetValue("NOC_GLOBAL_SETTING_TOASTS_ENABLED", "0", RegistryValueKind.DWord);
+                dndKey.SetValue(VALUE_NOTIFICATIONS_ENABLED, 1, RegistryValueKind.DWord);
                 dndKey.Close();
             }
-            catch
-            {
-                MessageBox.Show("There was an error.");
-            }
+            restartExplorer();
+        }
+
+        private void restartExplorer()
+        {
+            killExplorer = new ProcessStartInfo("taskkill", "/F /IM explorer.exe");
+            process = new Process();
+            process.StartInfo = killExplorer;
+            killExplorer.WindowStyle = ProcessWindowStyle.Hidden;
+            process.Start();
+            process.WaitForExit();
+
+            process = new Process();
+            process.StartInfo.FileName = EXPLORER;
+            process.StartInfo.UseShellExecute = true;
+            process.Start();
         }
     }
 }

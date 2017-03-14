@@ -11,6 +11,7 @@ namespace EndMe_Later
         private MainWindow main;
         private Sleep sl;
         private Reducer r;
+        private dndTimer d;
         protected int timerSetTime_Sec, currentTimerValue_Sec, tenthTime;
         private bool timerOn, once = false;
 
@@ -34,6 +35,12 @@ namespace EndMe_Later
                     r = new Reducer(main);      // create the reducer object
                 }
 
+                if (main.dndCheckBox.IsChecked == true)
+                {
+                    d = new dndTimer();
+                    d.turnOn();     // turn on dnd
+                }
+
                 KeepPCAwake();    // disable autosleep and keep the monitor from turning itself off
             }
         }
@@ -52,6 +59,7 @@ namespace EndMe_Later
             {
                 progTimer.Stop();
                 timerOn = false;
+                d.turnOff();    // turn of dnd
                 AllowSleep();
                 if (b == true) { checkSleep(); }    // if stopTimer was called by the timer expiring w/ sleep feature enabled
             }

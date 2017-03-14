@@ -8,7 +8,7 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Title="EndMe Later.exetreme public v2" Height="450.167" Width="462.283"
+        Title="EndMe Later.exetreme public v3" Height="510" Width="460"
         Closing="MainWindow_Closing"
         WindowStyle="None"
         ResizeMode="CanMinimize"
@@ -29,9 +29,10 @@
                     </StackPanel>
                 </Grid>
             </materialDesign:ColorZone>
-            <materialDesign:Card Margin="4" Height="296">
+            <materialDesign:Card Margin="4" Height="360">
                 <StackPanel>
                     <TextBlock x:Name="section1" Margin="8" HorizontalAlignment="Left" FontSize="22" Height="31" Text="1. Choose your options" VerticalAlignment="Top"/>
+
                     <StackPanel Orientation="Horizontal">
                         <CheckBox x:Name="sleepCheckBox" Margin="12">
                             <CheckBox.LayoutTransform>
@@ -41,6 +42,18 @@
                         <StackPanel>
                             <TextBlock x:Name="sleepTitle" FontSize="24" Height="31" Text="Sleep Timer" VerticalAlignment="Top"/>
                             <TextBlock x:Name="sleepDesc" FontSize="14" Height="24" TextWrapping="Wrap" Text="Put your computer to sleep once the timer expires." VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox x:Name="dndCheckBox" Margin="12">
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="1.75" ScaleY="1.75" />
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
+                        <StackPanel>
+                            <TextBlock x:Name="dndTitle" HorizontalAlignment="Left" FontSize="24" Height="31" Text="Do Not Disturb" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="dndDesc" HorizontalAlignment="Left" FontSize="14" Height="26" Text="Mute incoming notifications" VerticalAlignment="Top"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -55,7 +68,7 @@
                             <TextBlock x:Name="volumeDesc" HorizontalAlignment="Left" FontSize="14" Height="26" Text="Progressively lower computer volume over time." VerticalAlignment="Top"/>
                         </StackPanel>
                     </StackPanel>
-
+                    
                     <StackPanel Orientation="Horizontal">
                         <CheckBox x:Name="brightnessCheckBox" Margin="12">
                             <CheckBox.LayoutTransform>
