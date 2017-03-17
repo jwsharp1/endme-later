@@ -27,60 +27,65 @@
                     </StackPanel>
                 </Grid>
             </materialDesign:ColorZone>
+
             <materialDesign:Card Margin="4" Height="360">
                 <StackPanel>
-                    <TextBlock x:Name="section1" Margin="8" HorizontalAlignment="Left" FontSize="22" Height="31" Text="1. Choose your options" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="section1" Margin="8" HorizontalAlignment="Left" FontSize="24" Height="31" Text="First, choose your options" VerticalAlignment="Top"/>
 
                     <StackPanel Orientation="Horizontal">
+                        <Separator Margin="0" Width="20" Visibility="Hidden"/>
                         <CheckBox x:Name="sleepCheckBox" Margin="12">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="1.75" ScaleY="1.75" />
                             </CheckBox.LayoutTransform>
                         </CheckBox>
                         <StackPanel>
-                            <TextBlock x:Name="sleepTitle" FontSize="24" Height="31" Text="Sleep Timer" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="sleepTitle" FontSize="22" Height="28" Text="Sleep Timer" VerticalAlignment="Top"/>
                             <TextBlock x:Name="sleepDesc" FontSize="14" Height="24" TextWrapping="Wrap" Text="Put your computer to sleep once the timer expires" VerticalAlignment="Bottom"/>
                         </StackPanel>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
+                        <Separator Margin="0" Width="20" Visibility="Hidden"/>
                         <CheckBox x:Name="dndCheckBox" Margin="12">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="1.75" ScaleY="1.75" />
                             </CheckBox.LayoutTransform>
                         </CheckBox>
                         <StackPanel>
-                            <TextBlock x:Name="dndTitle" HorizontalAlignment="Left" FontSize="24" Height="31" Text="Do Not Disturb" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="dndTitle" HorizontalAlignment="Left" FontSize="22" Height="28" Text="Do Not Disturb" VerticalAlignment="Top"/>
                             <TextBlock x:Name="dndDesc" HorizontalAlignment="Left" FontSize="14" Height="26" Text="Mute incoming notifications" VerticalAlignment="Top"/>
                         </StackPanel>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
+                        <Separator Margin="0" Width="20" Visibility="Hidden"/>
                         <CheckBox x:Name="volumeCheckBox" Margin="12">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="1.75" ScaleY="1.75" />
                             </CheckBox.LayoutTransform>
                         </CheckBox>
                         <StackPanel>
-                            <TextBlock x:Name="volumeTitle" HorizontalAlignment="Left" FontSize="24" Height="31" TextWrapping="Wrap" Text="Volume Reducer" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="volumeTitle" HorizontalAlignment="Left" FontSize="22" Height="28" TextWrapping="Wrap" Text="Volume Reducer" VerticalAlignment="Top"/>
                             <TextBlock x:Name="volumeDesc" HorizontalAlignment="Left" FontSize="14" Height="26" Text="Progressively lower computer volume over time" VerticalAlignment="Top"/>
                         </StackPanel>
                     </StackPanel>
                     
                     <StackPanel Orientation="Horizontal">
+                        <Separator Margin="0" Width="20" Visibility="Hidden"/>
                         <CheckBox x:Name="brightnessCheckBox" Margin="12">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="1.75" ScaleY="1.75" />
                             </CheckBox.LayoutTransform>
                         </CheckBox>
                         <StackPanel>
-                            <TextBlock x:Name="brightnessTitle" HorizontalAlignment="Left" FontSize="24" Height="31" Text="Brightness Reducer" VerticalAlignment="Top"/>
+                            <TextBlock x:Name="brightnessTitle" HorizontalAlignment="Left" FontSize="22" Height="28" Text="Brightness Reducer" VerticalAlignment="Top"/>
                             <TextBlock x:Name="brightnessDesc" HorizontalAlignment="Left" FontSize="14" Height="26" Text="Progressively lower screen brightness over time" VerticalAlignment="Top"/>
                         </StackPanel>
                     </StackPanel>
 
-                    <TextBlock x:Name="section2" Margin="8" HorizontalAlignment="Left" FontSize="20" Height="25" Text="2. Drag the slider to set the timer"/>
-                    <Slider x:Name="slider" IsSnapToTickEnabled="True" TickFrequency="600"  Maximum="18000" ValueChanged="slider_ValueChanged" Width="380"/>
+                    <TextBlock x:Name="section2" Margin="8" HorizontalAlignment="Left" FontSize="24" Height="30" Text="Now drag the slider to set the timer"/>
+                    <Slider x:Name="slider"  IsSnapToTickEnabled="True" TickFrequency="600"  Maximum="18000" ValueChanged="slider_ValueChanged" Width="360"/>
                 </StackPanel>
             </materialDesign:Card>
 
