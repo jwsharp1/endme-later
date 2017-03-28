@@ -63,9 +63,9 @@ namespace EndMe_Later.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon fuckin_clock {
+        internal static System.Drawing.Icon app_icon {
             get {
-                object obj = ResourceManager.GetObject("fuckin_clock", resourceCulture);
+                object obj = ResourceManager.GetObject("app_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

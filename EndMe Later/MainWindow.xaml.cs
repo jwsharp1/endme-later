@@ -66,7 +66,7 @@ namespace EndMe_Later
             if (dr == System.Windows.Forms.DialogResult.Yes)
             {
                 //Settings.Default.Save();
-                if(dndCheckBox.IsChecked == true) { d = new dndTimer();  d.turnOff(); }  // turn off dnd feature when exiting if it is on
+                if(dndCheckBox.IsChecked == true) { dndTimer.turnOff(); }  // turn off dnd feature when exiting if it is on
             }
             else
             {

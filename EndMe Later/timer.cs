@@ -9,9 +9,7 @@ namespace EndMe_Later
         DispatcherTimer progTimer;
         private DateTime TimerStart { get; set; }
         private MainWindow main;
-        private Sleep sl;
         private Reducer r;
-        private dndTimer d;
         protected int timerSetTime_Sec, currentTimerValue_Sec, tenthTime;
         private bool timerOn, once = false;
 
@@ -37,8 +35,7 @@ namespace EndMe_Later
 
                 if (main.dndCheckBox.IsChecked == true)
                 {
-                    d = new dndTimer();
-                    d.turnOn();     // turn on dnd
+                    dndTimer.turnOn();     // turn on dnd
                 }
 
                 KeepPCAwake();    // disable autosleep and keep the monitor from turning itself off
@@ -60,7 +57,7 @@ namespace EndMe_Later
                 progTimer.Stop();
                 timerOn = false;
                 AllowSleep();
-                if (main.dndCheckBox.IsChecked == true) { d.turnOff(); }   // turn of dnd
+                if (main.dndCheckBox.IsChecked == true) { dndTimer.turnOff(); }   // turn of dnd
                 if (b == true) { checkSleep(); }    // if stopTimer was called by the timer expiring w/ sleep feature enabled
             }
         }
@@ -112,8 +109,7 @@ namespace EndMe_Later
         {
             if (main.sleepCheckBox.IsChecked == true)
             {
-                sl = new Sleep();
-                sl.sleep();
+                Sleep.sleep();
             }
         }
 

@@ -4,9 +4,9 @@ using System.Windows.Forms;
 
 namespace EndMe_Later
 {
-    public class Sleep
+    public static class Sleep
     {
-        public void sleep()
+        public static void sleep()
         {
             Application.SetSuspendState(PowerState.Suspend, false, false);
 

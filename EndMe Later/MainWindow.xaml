@@ -6,7 +6,7 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Title="EndMe Later.exetreme public v3" Height="510" Width="460"
+        Title="EndMe Later.exetreme public v3" Height="500" Width="460"
         Closing="MainWindow_Closing"
         WindowStyle="None"
         ResizeMode="CanMinimize"
@@ -14,14 +14,14 @@
         FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <StackPanel>
-            <materialDesign:ColorZone Padding="4" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" MouseDown="ColorZone_MouseDown">
+            <materialDesign:ColorZone Padding="4" materialDesign:ShadowAssist.ShadowDepth="Depth2" Mode="PrimaryMid" MouseDown="ColorZone_MouseDown" Background="#4A375B">
                 <Grid>
-                    <TextBlock x:Name="title" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold" Foreground="Black" Text="EndMe Later beta v3"/>
+                    <TextBlock x:Name="title" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontWeight="SemiBold" Foreground="White" Text="Dreamsily"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button x:Name="minimizeButton" Margin="2" Click="minimizeButton_Click">
+                        <Button x:Name="minimizeButton" Margin="2" Click="minimizeButton_Click" Background="#4A375B" BorderBrush="#40304F">
                             <materialDesign:PackIcon Kind="WindowMinimize"/>
                         </Button>
-                        <Button x:Name="quitButton" Margin="2" Click="quitButton_Click">
+                        <Button x:Name="quitButton" Margin="2" Click="quitButton_Click" Background="#4A375B" BorderBrush="#40304F">
                             <materialDesign:PackIcon Kind="WindowClose" VerticalAlignment="Bottom"/>
                         </Button>
                     </StackPanel>
@@ -34,7 +34,7 @@
 
                     <StackPanel Orientation="Horizontal">
                         <Separator Margin="0" Width="20" Visibility="Hidden"/>
-                        <CheckBox x:Name="sleepCheckBox" Margin="12">
+                        <CheckBox x:Name="sleepCheckBox" Margin="12" Background="#777777">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="1.75" ScaleY="1.75" />
                             </CheckBox.LayoutTransform>
@@ -47,7 +47,7 @@
 
                     <StackPanel Orientation="Horizontal">
                         <Separator Margin="0" Width="20" Visibility="Hidden"/>
-                        <CheckBox x:Name="dndCheckBox" Margin="12">
+                        <CheckBox x:Name="dndCheckBox" Margin="12" Background="#777777">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="1.75" ScaleY="1.75" />
                             </CheckBox.LayoutTransform>
@@ -60,7 +60,7 @@
 
                     <StackPanel Orientation="Horizontal">
                         <Separator Margin="0" Width="20" Visibility="Hidden"/>
-                        <CheckBox x:Name="volumeCheckBox" Margin="12">
+                        <CheckBox x:Name="volumeCheckBox" Margin="12" Background="#777777">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="1.75" ScaleY="1.75" />
                             </CheckBox.LayoutTransform>
@@ -73,7 +73,7 @@
                     
                     <StackPanel Orientation="Horizontal">
                         <Separator Margin="0" Width="20" Visibility="Hidden"/>
-                        <CheckBox x:Name="brightnessCheckBox" Margin="12">
+                        <CheckBox x:Name="brightnessCheckBox" Margin="12" Background="#777777">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="1.75" ScaleY="1.75" />
                             </CheckBox.LayoutTransform>
@@ -85,19 +85,19 @@
                     </StackPanel>
 
                     <TextBlock x:Name="section2" Margin="8" HorizontalAlignment="Left" FontSize="24" Height="30" Text="Now drag the slider to set the timer"/>
-                    <Slider x:Name="slider"  IsSnapToTickEnabled="True" TickFrequency="600"  Maximum="18000" ValueChanged="slider_ValueChanged" Width="360"/>
+                    <Slider x:Name="slider"  IsSnapToTickEnabled="True" TickFrequency="600"  Maximum="18000" ValueChanged="slider_ValueChanged" Width="360" Foreground="#777777"/>
                 </StackPanel>
             </materialDesign:Card>
 
             <StackPanel Orientation="Horizontal">
-                <materialDesign:Card Margin="4" Height="90" Width="246">
+                <materialDesign:Card Margin="4" Height="72" Width="246">
                         <Grid>
-                            <TextBlock x:Name="timeRemainingText" FontSize="18" Text="Time Remaining" HorizontalAlignment="Center" Padding="6"/>
-                            <TextBlock x:Name="timeRemaining" FontSize="24" Text="00h 00m 00s" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="18"/>
+                            <TextBlock x:Name="timeRemainingText" FontSize="14" Text="Time Remaining" HorizontalAlignment="Center" Padding="6"/>
+                            <TextBlock x:Name="timeRemaining" FontSize="24" Text="00h 00m 00s" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="6"/>
                         </Grid>
                 </materialDesign:Card>
-                <Button x:Name="startButton" Margin="4" Content="Start" Foreground="Black" FontSize="24" Background="LightGreen" BorderBrush="LightGreen" Click="start_Click" Height="77" Width="94"/>
-                <Button x:Name="stopButton" Margin="4" Content="Stop" Foreground="Black" FontSize="24" Background="IndianRed" BorderBrush="IndianRed" Click="stop_Click" Height="77" Width="94"/>
+                <Button x:Name="startButton" Content="Start" Foreground="Black" FontSize="24" Background="LightGreen" BorderBrush="LightGreen" Click="start_Click" Height="65" Width="90" VerticalAlignment="Center"/>
+                <Button x:Name="stopButton" Content="Stop" Foreground="Black" FontSize="24" Background="IndianRed" BorderBrush="IndianRed" Click="stop_Click" Height="65" Width="90" VerticalAlignment="Center" Margin="8"/>
             </StackPanel>
         </StackPanel>
     </Grid>

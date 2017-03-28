@@ -9,12 +9,12 @@ namespace EndMe_Later
         private static string KEY_NOTIFICATION_SETTINGS = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings";
         private static string VALUE_NOTIFICATIONS_ENABLED = "NOC_GLOBAL_SETTING_TOASTS_ENABLED";
         private static string EXPLORER = string.Format("{0}\\{1}", Environment.GetEnvironmentVariable("WINDIR"), "explorer.exe");
-        private RegistryKey dndKey;
-        private ProcessStartInfo killExplorer, startExplorer;
-        private Process process;
-        private bool dndStatus;
+        private static RegistryKey dndKey;
+        private static ProcessStartInfo killExplorer;
+        private static Process process;
+        private static bool dndStatus;
 
-        public bool getDndStatus()
+        public static bool getDndStatus()
         {
             dndStatus = (int)Registry.GetValue(KEY_NOTIFICATION_SETTINGS, VALUE_NOTIFICATIONS_ENABLED, 1) == 0;
             if (dndStatus)
@@ -27,7 +27,7 @@ namespace EndMe_Later
             }
         }
 
-        public void turnOn()
+        public static void turnOn()
         {
             dndKey = Registry.CurrentUser.OpenSubKey(KEY_NOTIFICATION_SETTINGS, true);
             if(dndKey != null)
@@ -38,7 +38,7 @@ namespace EndMe_Later
             restartExplorer();
         }
 
-        public void turnOff()
+        public static void turnOff()
         {
             dndKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings", true);
             if (dndKey != null)
@@ -49,7 +49,7 @@ namespace EndMe_Later
             restartExplorer();
         }
 
-        private void restartExplorer()
+        private static void restartExplorer()
         {
             killExplorer = new ProcessStartInfo("taskkill", "/F /IM explorer.exe");
             process = new Process();
